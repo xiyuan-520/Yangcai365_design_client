@@ -22,7 +22,7 @@ import java.util.List;
 
 import org.zhiqim.kernel.json.Jsons;
 
-import com.yangcai.design.client.ApiFile;
+import com.yangcai.design.client.YangcaiApiFile;
 
 /****
  * 订单相应对象
@@ -51,7 +51,7 @@ public class DesignOrder
     private Timestamp cancelTime;    //50.取消时间
     private String cancelReason;    //51.取消原因
     private Timestamp modifyTime;    //53.修改时间
-    private List<ApiFile> apiFiles = new ArrayList<ApiFile>();//相应的文件
+    private List<YangcaiApiFile> apiFiles = new ArrayList<YangcaiApiFile>();//相应的文件
     
     //***************************稳定后删除******************************
     private String  endFileUrl;//订单完成后 成品文件 下载路径
@@ -309,12 +309,12 @@ public class DesignOrder
         this.modifyTime = modifyTime;
     }
 
-    public List<ApiFile> getApiFiles()
+    public List<YangcaiApiFile> getApiFiles()
     {
         return apiFiles;
     }
 
-    public void setApiFiles(List<ApiFile> apiFiles)
+    public void setApiFiles(List<YangcaiApiFile> apiFiles)
     {
         this.apiFiles = apiFiles;
     }

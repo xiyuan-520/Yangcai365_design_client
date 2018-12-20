@@ -29,7 +29,6 @@ public class YangcaiClient implements HttpConstants
         if (param == null || !param.isValid())
             throw new RuntimeException("未配置接口参数或参数不正确不允许调用");
         T resp = req.newResponse();
-        
         req.buildSign(param.getMerchantId(), param.getAppSecret());
         String queryString = req.buildQueryString();
         HttpPost conn = new HttpPost(param.getRestUrl());
@@ -46,6 +45,7 @@ public class YangcaiClient implements HttpConstants
             resp.buildResponseError(responseStatus, "HTTP响应错误码：" + responseStatus);
             return resp;
         }
+        
         // 调用成功
         resp.buildResponseText(responseText);
         System.out.println(responseText);

@@ -23,7 +23,7 @@ import org.zhiqim.kernel.json.Jsons;
  *
  * @version v1.0.0 @author longguizhi 2018-12-1 新建与整理
  */
-public class ApiFile
+public class YangcaiApiFile
 {
     private long        designId;          //1设计订单号         
     private long        attaId;            //2附件编号           

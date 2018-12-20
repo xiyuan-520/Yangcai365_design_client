@@ -25,7 +25,7 @@ import org.zhiqim.kernel.util.Urls;
 import org.zhiqim.kernel.util.Validates;
 import org.zhiqim.kernel.util.codes.MD5;
 
-public abstract class YangcaiClientRequest<T extends YangcaiClientResponse> implements ApiConstants
+public abstract class YangcaiClientRequest<T extends YangcaiClientResponse> implements YangcaiApi
 {
     private String method;
     private String timestamp;
@@ -37,7 +37,7 @@ public abstract class YangcaiClientRequest<T extends YangcaiClientResponse> impl
         this.method = getMethod();
         this.timestamp = DateTimes.getDateTimeString();
     }
-
+ 
     /********************************************************/
     // 以下为子类必须实现方法
     /********************************************************/
@@ -59,7 +59,7 @@ public abstract class YangcaiClientRequest<T extends YangcaiClientResponse> impl
     /**
      * 子类必须实现属性设置到MAP中，图片除外
      */
-    protected abstract void buildSignBody();
+    protected abstract void buildQueryBody();
     
     
     /********************************************************/
@@ -135,7 +135,7 @@ public abstract class YangcaiClientRequest<T extends YangcaiClientResponse> impl
      */
     public String buildQueryString()
     {
-        buildSignBody();
+        buildQueryBody();
         StringBuffer strb = new StringBuffer("sign=").append(sign);
         for (Map.Entry<String, String> entry : paramMap.entrySet())
         {

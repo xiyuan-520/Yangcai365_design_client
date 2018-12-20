@@ -35,7 +35,7 @@ public class DesignOrderSynRequest extends YangcaiClientRequest<DesignOrderSynRe
         return new DesignOrderSynResponse();
     }
 
-    protected void buildSignBody()
+    protected void buildQueryBody()
     {
         addParam("merchantId", merchantId);
         addParam("designId", designId);

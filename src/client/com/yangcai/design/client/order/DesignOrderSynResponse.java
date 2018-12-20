@@ -24,11 +24,9 @@ import com.yangcai.design.client.YangcaiClientResponse;
 
 public class DesignOrderSynResponse extends YangcaiClientResponse
 {
-    private long merchantId;
     private List<DesignOrder> orderList;
     protected void buildResponse(String json)
     {
-        setMerchantId(Jsons.getLong(json, "merchantId"));
         setOrderList(Jsons.toList(Jsons.getString(json, "orderList"), DesignOrder.class));
     }
     public List<DesignOrder> getOrderList()
@@ -40,14 +38,6 @@ public class DesignOrderSynResponse extends YangcaiClientResponse
         this.orderList = orderList;
     }
     
-    public long getMerchantId()
-    {
-        return merchantId;
-    }
-    public void setMerchantId(long merchantId)
-    {
-        this.merchantId = merchantId;
-    }
     public String toString()
     {
         return Jsons.toString(this);

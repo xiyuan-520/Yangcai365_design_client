@@ -21,10 +21,11 @@ package com.yangcai.design.client;
  *
  * @version v1.0.0 @author lgz 2018-12-18 新建与整理
  */
-public interface ApiConstants
+public interface YangcaiApi
 {
     /***创建订单接口*/
     public final static String  ORDER_CREATE                    = "design.order.create";
     /***订单同步接口*/
     public final static String  ORDER_SYN                       = "design.order.syn";
+
 }
