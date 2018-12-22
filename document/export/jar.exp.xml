@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Zhiqim">
+	<section name="ExportJar">
+		<item value="" key="excludeDirs"/>
+		<item value="src/test" key="excludePackages"/>
+		<item value="true" key="isDivided"/>
+		<item value="false" key="isExportAndZipProject"/>
+		<item value="true" key="isIncludeJavaFile"/>
+		<item value="yangcai365_design" key="jarName"/>
+		<item value="" key="metaInfoPath"/>
+		<item value="" key="projectSourceName"/>
+		<item value="E:\mycode\_release" key="releasePath"/>
+	</section>
+</section>

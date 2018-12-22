@@ -46,6 +46,7 @@ public class DesignOrder
     private Timestamp requestTime;    //41.设计师请求主管支援 时间
     private String designRejectReason;    //42.主管支援拒绝原因
     private int designKeepDuration;    //43.设计师保留时长，单位分钟
+    private int receiveType;          //订单领取类型,0手动领单, 1 自动派单,2 手工指定
     private String requestRefoundAcceptReason;    //44.请求退款原因
     private String canceler;    //49.取消人
     private Timestamp cancelTime;    //50.取消时间
@@ -88,10 +89,20 @@ public class DesignOrder
         return designId;
     }
 
-
     public void setDesignId(long designId)
     {
         this.designId = designId;
+    }
+    
+    public int getReceiveType()
+    {
+        return receiveType;
+    }
+
+
+    public void setReceiveType(int receiveType)
+    {
+        this.receiveType = receiveType;
     }
 
 

@@ -14,7 +14,7 @@
  * 
  * 除非法律需要或书面同意，软件由原始码方式提供，无任何明示或暗示的保证和条件。详见完整许可证的权限和限制。
  */
-package com.yangcai.design.client.order;
+package com.yangcai.design.client.after;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,40 +25,37 @@ import com.yangcai.design.client.YangcaiApiFile;
 import com.yangcai.design.client.YangcaiClientResponse;
 
 /**
- *订单同步响应
+ * 售后同步响应
+ *
  * @version v1.0.0 @author lgz 2018-12-22 新建与整理
  */
-public class DesignOrderSynResponse extends YangcaiClientResponse
+public class DesignAfterSynResponse extends YangcaiClientResponse
 {
-    private List<DesignOrder> orderList;
+    private List<DesignAfter> afterList;
     protected void buildResponse(String json)
     {
-        List<DesignOrder> list = new ArrayList<DesignOrder>();;
-        List<String> orderJsons = Jsons.toList(Jsons.getString(json, "orderList"), String.class);
+        List<DesignAfter> list = new ArrayList<DesignAfter>();;
+        List<String> orderJsons = Jsons.toList(Jsons.getString(json, "afterList"), String.class);
         for (String orderJson : orderJsons)
         {
-            DesignOrder order = Jsons.toObject(orderJson, DesignOrder.class);
+            DesignAfter order = Jsons.toObject(orderJson, DesignAfter.class);
             List<YangcaiApiFile> apiFiles = Jsons.toList(Jsons.getString(orderJson, "apiFiles"), YangcaiApiFile.class);
             apiFiles = apiFiles != null ? apiFiles : new ArrayList<YangcaiApiFile>();
             
-            if (order != null)
-                order.setApiFiles(apiFiles);
-            
             list.add(order);
         }
-        
-        
-        setOrderList(list);
-    }
-    public List<DesignOrder> getOrderList()
-    {
-        return orderList;
-    }
-    public void setOrderList(List<DesignOrder> orderList)
-    {
-        this.orderList = orderList;
     }
     
+    public List<DesignAfter> getAfterList()
+    {
+        return afterList;
+    }
+
+    public void setAfterList(List<DesignAfter> afterList)
+    {
+        this.afterList = afterList;
+    }
+
     public String toString()
     {
         return Jsons.toString(this);

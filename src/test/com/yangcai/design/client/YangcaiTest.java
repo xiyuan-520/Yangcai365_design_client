@@ -16,39 +16,83 @@
  */
 package com.yangcai.design.client;
 
+import org.zhiqim.kernel.json.Jsons;
 import org.zhiqim.kernel.util.DateTimes;
+import org.zhiqim.kernel.util.Sqls;
+import org.zhiqim.kernel.util.Strings;
 
+import com.yangcai.design.client.after.DesignAfterCreateRequest;
+import com.yangcai.design.client.after.DesignAfterSynResponse;
+import com.yangcai.design.client.order.DesignOrder;
 import com.yangcai.design.client.order.DesignOrderSynRequest;
 import com.yangcai.design.client.order.DesignOrderSynResponse;
 
 public class YangcaiTest
 {
+    @SuppressWarnings("unused")
     public static void main(String[] args)
     {
         int connectTimeout = 10;
-        int readTimeout = 3*60;
+        int readTimeout = 10*60;
         String restUrl = "http://127.0.0.1:8081/designRest.htm";
         long merchantId = 1823193185001L;
         String appSecret = "32B1CCF38368E42AD31413B90309F69A";
         
-        String startModifyTime = DateTimes.getPreviousDateTimeStringByHour(2);
+        String startModifyTime = DateTimes.getPreviousDateTimeStringBySecond(30*60);
         String endModifyTime = DateTimes.getDateTimeString();
-        
-        DesignOrderSynRequest synReq = new DesignOrderSynRequest();
-        synReq.setMerchantId(merchantId);
-        synReq.setStartModifyTime(startModifyTime);
-        synReq.setEndModifyTime(endModifyTime);
-//        resp.setOutId(outId);
-//        resp.setDesignId(designId);
         
         YangcaiClientParam param = new YangcaiClientParam();
         param.setConnectTimeout(connectTimeout);
         param.setReadTimeout(readTimeout);
         param.setRestUrl(restUrl);
-        param.setMerchantId(merchantId);
+        param.setMerchantId(Strings.valueOf(merchantId));
         param.setAppSecret(appSecret);
+//        
+//        DesignOrderSynRequest synReq = new DesignOrderSynRequest();
+//        synReq.setMerchantId(merchantId);
+//        synReq.setStartModifyTime(startModifyTime);
+//        synReq.setEndModifyTime(endModifyTime);
+//        
+//        System.out.println("startModifyTime = " + startModifyTime);
+//        System.out.println("endModifyTime   = " + endModifyTime);
+//        
+       
+//        
+//        DesignOrderSynResponse synResp = YangcaiClient.execute(synReq, param);
+//        for (DesignOrder order : synResp.getOrderList())
+//        {
+//            System.out.println(order);
+//        }
+//        System.out.println(synResp.getOrderList().size());
         
-        DesignOrderSynResponse synResp = YangcaiClient.execute(synReq, param);
-        System.out.println(synResp.getOrderList().get(0).getApiFiles().get(0));
+        
+        //售后创建接口
+        DesignAfterCreateRequest afscreq = new DesignAfterCreateRequest();
+        afscreq.setDesignId(1826144321001L);
+        afscreq.setMerchantId(merchantId);
+        afscreq.setOutAfsId("1826144321001");
+        afscreq.setProblemDesc("设计有问题");
+        
+       DesignAfterSynResponse afsresp = YangcaiClient.execute(afscreq, param);
+       System.out.println(afsresp.getResponseText());
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -14,39 +14,45 @@
  * 
  * 除非法律需要或书面同意，软件由原始码方式提供，无任何明示或暗示的保证和条件。详见完整许可证的权限和限制。
  */
-package com.yangcai.design.client.order;
+package com.yangcai.design.client.after;
 
+import java.util.List;
+
+import org.zhiqim.kernel.json.Jsons;
+
+import com.yangcai.design.client.YangcaiApiFile;
 import com.yangcai.design.client.YangcaiClientRequest;
 
 /***
- * 订单同步请求
+ * 售后同步请求
  *
  * @version v1.0.0 @author lgz 2018-12-22 新建与整理
  */
-public class DesignOrderSynRequest extends YangcaiClientRequest<DesignOrderSynResponse>
+public class DesignAfterCreateRequest extends YangcaiClientRequest<DesignAfterSynResponse>
 {
-    private long               merchantId;//           是                            订单商户编号
-    private long                 designId;//           否                            设计订单号
-    private long                    outId;//           否                            外部系统单号
-    private String          startModifyTime;//      否                            设计平台的订单开始变更时间，默认十分钟前
-    private String          endModifyTime;//        否                            设计平台的订单结束时间，默认当前时间
+    //       字段类型                   接口字段              长度             是否必须           字段描述
+    private long                     merchantId;//                            是               商户标号
+    private long                       designId;//                            是              那条设计订单 出的售后
+    private String                     outAfsId;//            64               是               第三方售后单号
+    private String                  problemDesc;//           300               是               问题描述
+    private List<YangcaiApiFile>       aipFiles;//                             否               售后文件
     public String getMethod()
     {
-        return ORDER_SYN;
+        return AFTER_CREATE;
     }
 
-    public DesignOrderSynResponse newResponse()
+    public DesignAfterSynResponse newResponse()
     {
-        return new DesignOrderSynResponse();
+        return new DesignAfterSynResponse();
     }
 
     protected void buildQueryBody()
     {
         addParam("merchantId", merchantId);
         addParam("designId", designId);
-        addParam("outId", outId);
-        addParam("startModifyTime", startModifyTime);
-        addParam("endModifyTime", endModifyTime);
+        addParam("outAfsId", outAfsId);
+        addParam("problemDesc", problemDesc);
+        addParam("aipFiles", Jsons.toString(aipFiles));
     }
 
     public long getMerchantId()
@@ -69,34 +75,34 @@ public class DesignOrderSynRequest extends YangcaiClientRequest<DesignOrderSynRe
         this.designId = designId;
     }
 
-    public long getOutId()
+    public String getOutAfsId()
     {
-        return outId;
+        return outAfsId;
     }
 
-    public void setOutId(long outId)
+    public void setOutAfsId(String outAfsId)
     {
-        this.outId = outId;
+        this.outAfsId = outAfsId;
     }
 
-    public String getStartModifyTime()
+    public String getProblemDesc()
     {
-        return startModifyTime;
+        return problemDesc;
     }
 
-    public void setStartModifyTime(String startModifyTime)
+    public void setProblemDesc(String problemDesc)
     {
-        this.startModifyTime = startModifyTime;
+        this.problemDesc = problemDesc;
     }
 
-    public String getEndModifyTime()
+    public List<YangcaiApiFile> getAipFiles()
     {
-        return endModifyTime;
+        return aipFiles;
     }
 
-    public void setEndModifyTime(String endModifyTime)
+    public void setAipFiles(List<YangcaiApiFile> aipFiles)
     {
-        this.endModifyTime = endModifyTime;
+        this.aipFiles = aipFiles;
     }
-    
+
 }

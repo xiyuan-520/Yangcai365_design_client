@@ -114,7 +114,7 @@ public abstract class YangcaiClientRequest<T extends YangcaiClientResponse> impl
      * 
      * @param appSecret 传入密钥
      */
-    public void buildSign(long merchantId, String appSecret)
+    public void buildSign(String merchantId, String appSecret)
     {
         // 系统参数
         addParam("method", method);

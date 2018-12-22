@@ -14,16 +14,16 @@
  * 
  * 除非法律需要或书面同意，软件由原始码方式提供，无任何明示或暗示的保证和条件。详见完整许可证的权限和限制。
  */
-package com.yangcai.design.client.order;
+package com.yangcai.design.client.after;
 
 import com.yangcai.design.client.YangcaiClientRequest;
 
 /***
- * 订单同步请求
+ * 售后同步请求
  *
  * @version v1.0.0 @author lgz 2018-12-22 新建与整理
  */
-public class DesignOrderSynRequest extends YangcaiClientRequest<DesignOrderSynResponse>
+public class DesignAfterSynRequest extends YangcaiClientRequest<DesignAfterSynResponse>
 {
     private long               merchantId;//           是                            订单商户编号
     private long                 designId;//           否                            设计订单号
@@ -32,12 +32,12 @@ public class DesignOrderSynRequest extends YangcaiClientRequest<DesignOrderSynRe
     private String          endModifyTime;//        否                            设计平台的订单结束时间，默认当前时间
     public String getMethod()
     {
-        return ORDER_SYN;
+        return AFTER_SYN;
     }
 
-    public DesignOrderSynResponse newResponse()
+    public DesignAfterSynResponse newResponse()
     {
-        return new DesignOrderSynResponse();
+        return new DesignAfterSynResponse();
     }
 
     protected void buildQueryBody()

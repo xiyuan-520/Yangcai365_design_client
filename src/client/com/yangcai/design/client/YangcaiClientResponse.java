@@ -116,5 +116,14 @@ public abstract class YangcaiClientResponse
         else
             return responseText;
     }
+    
+    public String getResponseText()
+    {
+        
+        if (error != null)
+            return error.toString();
+        else
+            return responseText;
+    }
 }
 

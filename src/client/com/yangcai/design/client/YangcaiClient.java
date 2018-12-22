@@ -48,7 +48,6 @@ public class YangcaiClient implements HttpConstants
         
         // 调用成功
         resp.buildResponseText(responseText);
-        System.out.println(responseText);
         return resp;
     }
 }
