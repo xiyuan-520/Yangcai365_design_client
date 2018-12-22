@@ -16,6 +16,9 @@
  */
 package com.yangcai.design.client;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.zhiqim.kernel.json.Jsons;
 import org.zhiqim.kernel.util.DateTimes;
 import org.zhiqim.kernel.util.Sqls;
@@ -73,6 +76,13 @@ public class YangcaiTest
         afscreq.setOutAfsId("1826144321001");
         afscreq.setProblemDesc("设计有问题");
         
+        List<YangcaiApiFile> afsFiles = new ArrayList<YangcaiApiFile>();
+        YangcaiApiFile afsFile = new YangcaiApiFile();
+        afsFile.setFileName("售后文件");
+        afsFile.setFileExt("200");
+        afsFile.setDownUrl("http://yangcai-taobao.oss-cn-shenzhen.aliyuncs.com/20181221/EndFile/1812211907566166.pdf");
+        afsFiles.add(afsFile);
+        afscreq.setAipFiles(afsFiles);
        DesignAfterSynResponse afsresp = YangcaiClient.execute(afscreq, param);
        System.out.println(afsresp.getResponseText());
     }
