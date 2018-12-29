@@ -16,20 +16,13 @@
  */
 package com.yangcai.design.client;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.zhiqim.kernel.json.Jsons;
 import org.zhiqim.kernel.util.DateTimes;
-import org.zhiqim.kernel.util.Sqls;
 import org.zhiqim.kernel.util.Strings;
 
-import com.yangcai.design.client.after.DesignAfterCreateRequest;
+import com.yangcai.design.client.after.DesignAfterCancelRequest;
+import com.yangcai.design.client.after.DesignAfterCancelResponse;
 import com.yangcai.design.client.after.DesignAfterSynRequest;
 import com.yangcai.design.client.after.DesignAfterSynResponse;
-import com.yangcai.design.client.order.DesignOrder;
-import com.yangcai.design.client.order.DesignOrderSynRequest;
-import com.yangcai.design.client.order.DesignOrderSynResponse;
 
 public class YangcaiTest
 {
@@ -93,13 +86,20 @@ public class YangcaiTest
 //       System.out.println(afsresp.getResponseText());
         
         //售后创建接口
-      DesignAfterSynRequest afssynreq = new DesignAfterSynRequest();
-      afssynreq.setMerchantId(merchantId);
-      afssynreq.setStartModifyTime("2018-12-29 00:00:00");
-      afssynreq.setEndModifyTime(DateTimes.getDateTimeString());
+//      DesignAfterSynRequest afssynreq = new DesignAfterSynRequest();
+//      afssynreq.setMerchantId(merchantId);
+//      afssynreq.setStartModifyTime("2018-12-29 00:00:00");
+//      afssynreq.setEndModifyTime(DateTimes.getDateTimeString());
+//    
+//      DesignAfterSynResponse afssynresp = YangcaiClient.execute(afssynreq, param);
+//      System.out.println(afssynresp.getAfterList());
+      DesignAfterCancelRequest afsCancelreq = new DesignAfterCancelRequest();
+//      afsCancelreq.setMerchantId(merchantId);
+      afsCancelreq.setDesignAfsId(1812271201450002L);
+      afsCancelreq.setCancelNote("csdcsdcdscdcdsc");
     
-      DesignAfterSynResponse afssynresp = YangcaiClient.execute(afssynreq, param);
-      System.out.println(afssynresp.getAfterList());
+      DesignAfterCancelResponse afscancelresp = YangcaiClient.execute(afsCancelreq, param);
+      System.out.println(afscancelresp.getResponseText());
     }
 }
 

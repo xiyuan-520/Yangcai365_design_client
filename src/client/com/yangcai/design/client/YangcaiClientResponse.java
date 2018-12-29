@@ -81,7 +81,7 @@ public abstract class YangcaiClientResponse
         }
     }
 
-    /** 是否成功 */
+    /** 是否请求成功 */
     public boolean isSuccess()
     {
         return error == null;

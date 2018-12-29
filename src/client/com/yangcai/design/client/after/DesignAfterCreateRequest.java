@@ -33,8 +33,10 @@ public class DesignAfterCreateRequest extends YangcaiClientRequest<DesignAfterSy
     //       字段类型                   接口字段              长度             是否必须           字段描述
     private long                     merchantId;//                            是               商户标号
     private long                       designId;//                            是              那条设计订单 出的售后
+    private long                   newdDesignId;//                            是              那条设计订单 出的售后
     private String                     outAfsId;//            64               是               第三方售后单号
     private String                  problemDesc;//           300               是               问题描述
+    private double                  lossAmount;
     private List<YangcaiApiFile>       aipFiles;//                             否               售后文件
     public String getMethod()
     {
@@ -52,6 +54,8 @@ public class DesignAfterCreateRequest extends YangcaiClientRequest<DesignAfterSy
         addParam("designId", designId);
         addParam("outAfsId", outAfsId);
         addParam("problemDesc", problemDesc);
+        addParam("newdDesignId", newdDesignId);
+        addParam("lossAmount", lossAmount);
         addParam("aipFiles", Jsons.toString(aipFiles));
     }
 
@@ -93,6 +97,26 @@ public class DesignAfterCreateRequest extends YangcaiClientRequest<DesignAfterSy
     public void setProblemDesc(String problemDesc)
     {
         this.problemDesc = problemDesc;
+    }
+    
+    public long getNewdDesignId()
+    {
+        return newdDesignId;
+    }
+
+    public void setNewdDesignId(long newdDesignId)
+    {
+        this.newdDesignId = newdDesignId;
+    }
+
+    public double getLossAmount()
+    {
+        return lossAmount;
+    }
+
+    public void setLossAmount(double lossAmount)
+    {
+        this.lossAmount = lossAmount;
     }
 
     public List<YangcaiApiFile> getAipFiles()

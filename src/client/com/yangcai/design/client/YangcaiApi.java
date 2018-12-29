@@ -35,8 +35,10 @@ public interface YangcaiApi
     /******************************/
     //****订单部分
     /******************************/
-    /***创建订单接口*/
+    /***售后创建接口*/
     public final static String  AFTER_CREATE                    = "design.after.create";
-    /***订单同步接口*/
+    /***售后同步接口*/
     public final static String  AFTER_SYN                       = "design.after.syn";
+    /***售后取消接口*/
+    public final static String  AFTER_CANCEL                    = "design.after.cancel";
 }
