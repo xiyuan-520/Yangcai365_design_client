@@ -21,15 +21,15 @@ import com.yangcai.design.client.YangcaiClientRequest;
 /***
  * 售后同步请求
  *
- * @version v1.0.0 @author lgz 2018-12-22 新建与整理
+ * @version v1.0.0 @author lgz 2018-12-29 新建与整理
  */
 public class DesignAfterSynRequest extends YangcaiClientRequest<DesignAfterSynResponse>
 {
     private long               merchantId;//           是                            订单商户编号
-    private long                 designId;//           否                            设计订单号
-    private long                    outId;//           否                            外部系统单号
-    private String          startModifyTime;//      否                            设计平台的订单开始变更时间，默认十分钟前
-    private String          endModifyTime;//        否                            设计平台的订单结束时间，默认当前时间
+    private long              designAfsId;//           否                            设计订单号 平台
+    private String                outAfsId;//           否                            外部系统售后单号
+    private String          startModifyTime;//         是                           设计平台的订单开始变更时间，默认十分钟前
+    private String          endModifyTime;//           是                            设计平台的订单结束时间，默认当前时间
     public String getMethod()
     {
         return AFTER_SYN;
@@ -43,8 +43,8 @@ public class DesignAfterSynRequest extends YangcaiClientRequest<DesignAfterSynRe
     protected void buildQueryBody()
     {
         addParam("merchantId", merchantId);
-        addParam("designId", designId);
-        addParam("outId", outId);
+        addParam("designAfsId", designAfsId);
+        addParam("outAfsId", outAfsId);
         addParam("startModifyTime", startModifyTime);
         addParam("endModifyTime", endModifyTime);
     }
@@ -59,24 +59,24 @@ public class DesignAfterSynRequest extends YangcaiClientRequest<DesignAfterSynRe
         this.merchantId = merchantId;
     }
 
-    public long getDesignId()
+    public long getDesignAfsId()
     {
-        return designId;
+        return designAfsId;
     }
 
-    public void setDesignId(long designId)
+    public void setDesignAfsId(long designAfsId)
     {
-        this.designId = designId;
+        this.designAfsId = designAfsId;
     }
 
-    public long getOutId()
+    public String getOutAfsId()
     {
-        return outId;
+        return outAfsId;
     }
 
-    public void setOutId(long outId)
+    public void setOutAfsId(String outAfsId)
     {
-        this.outId = outId;
+        this.outAfsId = outAfsId;
     }
 
     public String getStartModifyTime()
@@ -98,5 +98,4 @@ public class DesignAfterSynRequest extends YangcaiClientRequest<DesignAfterSynRe
     {
         this.endModifyTime = endModifyTime;
     }
-    
 }

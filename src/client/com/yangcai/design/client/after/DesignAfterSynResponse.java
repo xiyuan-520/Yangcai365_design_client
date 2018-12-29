@@ -27,7 +27,7 @@ import com.yangcai.design.client.YangcaiClientResponse;
 /**
  * 售后同步响应
  *
- * @version v1.0.0 @author lgz 2018-12-22 新建与整理
+ * @version v1.0.0 @author lgz 2018-12-29 新建与整理
  */
 public class DesignAfterSynResponse extends YangcaiClientResponse
 {
@@ -44,6 +44,8 @@ public class DesignAfterSynResponse extends YangcaiClientResponse
             
             list.add(order);
         }
+        
+        setAfterList(list);
     }
     
     public List<DesignAfter> getAfterList()

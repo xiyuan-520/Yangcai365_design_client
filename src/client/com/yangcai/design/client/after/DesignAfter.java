@@ -17,6 +17,11 @@
 package com.yangcai.design.client.after;
 
 import java.sql.Timestamp;
+import java.util.List;
+
+import org.zhiqim.kernel.json.Jsons;
+
+import com.yangcai.design.client.YangcaiApiFile;
 
 
 /***
@@ -27,18 +32,16 @@ import java.sql.Timestamp;
  */
 public class DesignAfter
 {
-    /****************************************/
-    /****************服务端数据***************/
-    /****************************************/
-    private long        designId;           //那条设计订单 出的售后
-    private long        designAfsId;        //设计盘平台的售后单号
-    private int         afterStatus;        //处理状态
-    private int         problemType;        //问题类型
-    private String      problemDesc;        //问题描述
-    private Timestamp   createTime; 
-    private Timestamp   modifyTime; 
-    private long merchantId;
-    private long outAfsId;
+    private long                designId;           //那条设计订单 出的售后
+    private long                designAfsId;        //设计盘平台的售后单号
+    private int                 afterStatus;        //处理状态
+    private long                problemType;        //问题类型
+    private String              problemDesc;        //问题描述
+    private Timestamp           createTime; 
+    private Timestamp           modifyTime; 
+    private long                merchantId;
+    private String              outAfsId;
+    private List<YangcaiApiFile> apiFiles;
     public long getDesignId()
     {
         return designId;
@@ -63,11 +66,11 @@ public class DesignAfter
     {
         this.afterStatus = afterStatus;
     }
-    public int getProblemType()
+    public long getProblemType()
     {
         return problemType;
     }
-    public void setProblemType(int problemType)
+    public void setProblemType(long problemType)
     {
         this.problemType = problemType;
     }
@@ -103,15 +106,25 @@ public class DesignAfter
     {
         this.merchantId = merchantId;
     }
-    public long getOutAfsId()
+    public String getOutAfsId()
     {
         return outAfsId;
     }
-    public void setOutAfsId(long outAfsId)
+    public void setOutAfsId(String outAfsId)
     {
         this.outAfsId = outAfsId;
     }
+    public List<YangcaiApiFile> getApiFiles()
+    {
+        return apiFiles;
+    }
+    public void setApiFiles(List<YangcaiApiFile> apiFiles)
+    {
+        this.apiFiles = apiFiles;
+    }
     
-    
-    
+    public String toString()
+    {
+        return Jsons.toString(this);
+    }
 }

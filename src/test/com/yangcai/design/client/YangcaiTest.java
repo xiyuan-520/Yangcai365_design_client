@@ -25,6 +25,7 @@ import org.zhiqim.kernel.util.Sqls;
 import org.zhiqim.kernel.util.Strings;
 
 import com.yangcai.design.client.after.DesignAfterCreateRequest;
+import com.yangcai.design.client.after.DesignAfterSynRequest;
 import com.yangcai.design.client.after.DesignAfterSynResponse;
 import com.yangcai.design.client.order.DesignOrder;
 import com.yangcai.design.client.order.DesignOrderSynRequest;
@@ -38,11 +39,14 @@ public class YangcaiTest
         int connectTimeout = 10;
         int readTimeout = 10*60;
         String restUrl = "http://127.0.0.1:8081/designRest.htm";
+//        String restUrl = "http://server.yangcai365.com/designRest.htm";
         long merchantId = 1823193185001L;
         String appSecret = "32B1CCF38368E42AD31413B90309F69A";
         
-        String startModifyTime = DateTimes.getPreviousDateTimeStringBySecond(30*60);
+        String startModifyTime ="2018-12-24";
         String endModifyTime = DateTimes.getDateTimeString();
+//        String startModifyTime = DateTimes.getPreviousDateTimeStringBySecond(30*60);
+//        String endModifyTime = DateTimes.getDateTimeString();
         
         YangcaiClientParam param = new YangcaiClientParam();
         param.setConnectTimeout(connectTimeout);
@@ -50,7 +54,7 @@ public class YangcaiTest
         param.setRestUrl(restUrl);
         param.setMerchantId(Strings.valueOf(merchantId));
         param.setAppSecret(appSecret);
-//        
+        
 //        DesignOrderSynRequest synReq = new DesignOrderSynRequest();
 //        synReq.setMerchantId(merchantId);
 //        synReq.setStartModifyTime(startModifyTime);
@@ -58,33 +62,44 @@ public class YangcaiTest
 //        
 //        System.out.println("startModifyTime = " + startModifyTime);
 //        System.out.println("endModifyTime   = " + endModifyTime);
-//        
-       
-//        
+////        
+//       
+////        
 //        DesignOrderSynResponse synResp = YangcaiClient.execute(synReq, param);
 //        for (DesignOrder order : synResp.getOrderList())
 //        {
 //            System.out.println(order);
 //        }
 //        System.out.println(synResp.getOrderList().size());
+//        
         
+//        //售后创建接口
+//        long designId = 1805121158191104L;
+//        DesignAfterCreateRequest afscreq = new DesignAfterCreateRequest();
+//        afscreq.setDesignId(designId);
+//        afscreq.setMerchantId(merchantId);
+//        afscreq.setOutAfsId(""+designId);
+//        afscreq.setProblemDesc("设计有问题");
+//        
+//        List<YangcaiApiFile> afsFiles = new ArrayList<YangcaiApiFile>();
+//        YangcaiApiFile afsFile = new YangcaiApiFile();
+//        afsFile.setFileName(designId+"-售后文件.pdf");
+//        afsFile.setFileExt("pdf");
+//        afsFile.setDownUrl("http://yangcai-taobao.oss-cn-shenzhen.aliyuncs.com/20181221/EndFile/1812211907566166.pdf");
+//        afsFiles.add(afsFile);
+//        afsFile.setFileSize(20000);
+//        afscreq.setAipFiles(afsFiles);
+//       DesignAfterSynResponse afsresp = YangcaiClient.execute(afscreq, param);
+//       System.out.println(afsresp.getResponseText());
         
         //售后创建接口
-        DesignAfterCreateRequest afscreq = new DesignAfterCreateRequest();
-        afscreq.setDesignId(1826144321001L);
-        afscreq.setMerchantId(merchantId);
-        afscreq.setOutAfsId("1826144321001");
-        afscreq.setProblemDesc("设计有问题");
-        
-        List<YangcaiApiFile> afsFiles = new ArrayList<YangcaiApiFile>();
-        YangcaiApiFile afsFile = new YangcaiApiFile();
-        afsFile.setFileName("售后文件");
-        afsFile.setFileExt("200");
-        afsFile.setDownUrl("http://yangcai-taobao.oss-cn-shenzhen.aliyuncs.com/20181221/EndFile/1812211907566166.pdf");
-        afsFiles.add(afsFile);
-        afscreq.setAipFiles(afsFiles);
-       DesignAfterSynResponse afsresp = YangcaiClient.execute(afscreq, param);
-       System.out.println(afsresp.getResponseText());
+      DesignAfterSynRequest afssynreq = new DesignAfterSynRequest();
+      afssynreq.setMerchantId(merchantId);
+      afssynreq.setStartModifyTime("2018-12-29 00:00:00");
+      afssynreq.setEndModifyTime(DateTimes.getDateTimeString());
+    
+      DesignAfterSynResponse afssynresp = YangcaiClient.execute(afssynreq, param);
+      System.out.println(afssynresp.getAfterList());
     }
 }
 
