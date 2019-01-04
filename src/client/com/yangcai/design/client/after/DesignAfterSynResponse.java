@@ -41,7 +41,7 @@ public class DesignAfterSynResponse extends YangcaiClientResponse
             DesignAfter order = Jsons.toObject(orderJson, DesignAfter.class);
             List<YangcaiApiFile> apiFiles = Jsons.toList(Jsons.getString(orderJson, "apiFiles"), YangcaiApiFile.class);
             apiFiles = apiFiles != null ? apiFiles : new ArrayList<YangcaiApiFile>();
-            
+            order.setApiFiles(apiFiles);
             list.add(order);
         }
         

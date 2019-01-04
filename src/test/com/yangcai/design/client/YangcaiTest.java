@@ -16,15 +16,17 @@
  */
 package com.yangcai.design.client;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.zhiqim.kernel.constants.SignConstants;
 import org.zhiqim.kernel.util.DateTimes;
 import org.zhiqim.kernel.util.Strings;
 
-import com.yangcai.design.client.after.DesignAfterCancelRequest;
-import com.yangcai.design.client.after.DesignAfterCancelResponse;
-import com.yangcai.design.client.after.DesignAfterSynRequest;
-import com.yangcai.design.client.after.DesignAfterSynResponse;
+import com.yangcai.design.client.after.DesignAfterCreateRequest;
+import com.yangcai.design.client.after.DesignAfterCreateResponse;
 
-public class YangcaiTest
+public class YangcaiTest implements SignConstants
 {
     @SuppressWarnings("unused")
     public static void main(String[] args)
@@ -67,23 +69,24 @@ public class YangcaiTest
 //        
         
 //        //售后创建接口
-//        long designId = 1805121158191104L;
-//        DesignAfterCreateRequest afscreq = new DesignAfterCreateRequest();
-//        afscreq.setDesignId(designId);
-//        afscreq.setMerchantId(merchantId);
-//        afscreq.setOutAfsId(""+designId);
-//        afscreq.setProblemDesc("设计有问题");
-//        
-//        List<YangcaiApiFile> afsFiles = new ArrayList<YangcaiApiFile>();
-//        YangcaiApiFile afsFile = new YangcaiApiFile();
-//        afsFile.setFileName(designId+"-售后文件.pdf");
-//        afsFile.setFileExt("pdf");
-//        afsFile.setDownUrl("http://yangcai-taobao.oss-cn-shenzhen.aliyuncs.com/20181221/EndFile/1812211907566166.pdf");
-//        afsFiles.add(afsFile);
-//        afsFile.setFileSize(20000);
-//        afscreq.setAipFiles(afsFiles);
-//       DesignAfterSynResponse afsresp = YangcaiClient.execute(afscreq, param);
-//       System.out.println(afsresp.getResponseText());
+        long designId = 1805121158191104L;
+        DesignAfterCreateRequest afscreq = new DesignAfterCreateRequest();
+        afscreq.setDesignId(designId);
+        afscreq.setMerchantId(merchantId);
+        afscreq.setOutAfsId(""+designId);
+        afscreq.setProblemDesc("设计有问题");
+        
+        List<YangcaiApiFile> afsFiles = new ArrayList<YangcaiApiFile>();
+        YangcaiApiFile afsFile = new YangcaiApiFile();
+        afsFile.setFileName(designId+"-售后文件.pdf");
+        afsFile.setFileExt("pdf");
+        afsFile.setDownUrl("http://yangcai-taobao.oss-cn-shenzhen.aliyuncs.com/20181221/EndFile/1812211907566166.pdf");
+        afsFiles.add(afsFile);
+        afsFile.setFileSize(20000);
+        afscreq.setApiFiles(afsFiles);
+       DesignAfterCreateResponse afscresp = YangcaiClient.execute(afscreq, param);
+       System.out.println(afscresp.getResponseText());
+       System.out.println(afscresp.getDesignAfsId());
         
         //售后创建接口
 //      DesignAfterSynRequest afssynreq = new DesignAfterSynRequest();
@@ -93,13 +96,16 @@ public class YangcaiTest
 //    
 //      DesignAfterSynResponse afssynresp = YangcaiClient.execute(afssynreq, param);
 //      System.out.println(afssynresp.getAfterList());
-      DesignAfterCancelRequest afsCancelreq = new DesignAfterCancelRequest();
+//      DesignAfterCancelRequest afsCancelreq = new DesignAfterCancelRequest();
 //      afsCancelreq.setMerchantId(merchantId);
-      afsCancelreq.setDesignAfsId(1812271201450002L);
-      afsCancelreq.setCancelNote("csdcsdcdscdcdsc");
-    
-      DesignAfterCancelResponse afscancelresp = YangcaiClient.execute(afsCancelreq, param);
-      System.out.println(afscancelresp.getResponseText());
+//      afsCancelreq.setDesignAfsId(1812271201450002L);
+//      afsCancelreq.setCancelNote("csdcsdcdscdcdsc");
+//    
+//      DesignAfterCancelResponse afscancelresp = YangcaiClient.execute(afsCancelreq, param);
+//      System.out.println(afscancelresp.getResponseText());
+        
+//        String sss = "3.65GiB";
+//        System.out.println((long)Math.ceil(1*GiB));
     }
 }
 

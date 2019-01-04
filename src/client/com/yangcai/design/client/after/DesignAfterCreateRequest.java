@@ -28,24 +28,24 @@ import com.yangcai.design.client.YangcaiClientRequest;
  *
  * @version v1.0.0 @author lgz 2018-12-22 新建与整理
  */
-public class DesignAfterCreateRequest extends YangcaiClientRequest<DesignAfterSynResponse>
+public class DesignAfterCreateRequest extends YangcaiClientRequest<DesignAfterCreateResponse>
 {
     //       字段类型                   接口字段              长度             是否必须           字段描述
     private long                     merchantId;//                            是               商户标号
-    private long                       designId;//                            是              那条设计订单 出的售后
-    private long                   newdDesignId;//                            是              那条设计订单 出的售后
-    private String                     outAfsId;//            64               是               第三方售后单号
-    private String                  problemDesc;//           300               是               问题描述
-    private double                  lossAmount;
-    private List<YangcaiApiFile>       aipFiles;//                             否               售后文件
+    private long                       designId;//                             是               那条设计订单 出的售后
+    private long                    newDesignId;//                             是               那条设计订单 出的售后
+    private String                      outAfsId;//            64               是               第三方售后单号
+    private String                   problemDesc;//           300               是               问题描述
+    private double                   lossAmount;
+    private List<YangcaiApiFile>       apiFiles;//                             否               售后文件
     public String getMethod()
     {
         return AFTER_CREATE;
     }
 
-    public DesignAfterSynResponse newResponse()
+    public DesignAfterCreateResponse newResponse()
     {
-        return new DesignAfterSynResponse();
+        return new DesignAfterCreateResponse();
     }
 
     protected void buildQueryBody()
@@ -54,9 +54,9 @@ public class DesignAfterCreateRequest extends YangcaiClientRequest<DesignAfterSy
         addParam("designId", designId);
         addParam("outAfsId", outAfsId);
         addParam("problemDesc", problemDesc);
-        addParam("newdDesignId", newdDesignId);
+        addParam("newDesignId", newDesignId);
         addParam("lossAmount", lossAmount);
-        addParam("aipFiles", Jsons.toString(aipFiles));
+        addParam("aipFiles", Jsons.toString(apiFiles));
     }
 
     public long getMerchantId()
@@ -98,15 +98,15 @@ public class DesignAfterCreateRequest extends YangcaiClientRequest<DesignAfterSy
     {
         this.problemDesc = problemDesc;
     }
-    
-    public long getNewdDesignId()
+
+    public long getNewDesignId()
     {
-        return newdDesignId;
+        return newDesignId;
     }
 
-    public void setNewdDesignId(long newdDesignId)
+    public void setNewDesignId(long newDesignId)
     {
-        this.newdDesignId = newdDesignId;
+        this.newDesignId = newDesignId;
     }
 
     public double getLossAmount()
@@ -119,14 +119,14 @@ public class DesignAfterCreateRequest extends YangcaiClientRequest<DesignAfterSy
         this.lossAmount = lossAmount;
     }
 
-    public List<YangcaiApiFile> getAipFiles()
+    public List<YangcaiApiFile> getApiFiles()
     {
-        return aipFiles;
+        return apiFiles;
     }
 
-    public void setAipFiles(List<YangcaiApiFile> aipFiles)
+    public void setApiFiles(List<YangcaiApiFile> apiFiles)
     {
-        this.aipFiles = aipFiles;
+        this.apiFiles = apiFiles;
     }
 
 }

@@ -14,33 +14,32 @@
  * 
  * 除非法律需要或书面同意，软件由原始码方式提供，无任何明示或暗示的保证和条件。详见完整许可证的权限和限制。
  */
-package com.yangcai.design.client;
+package com.yangcai.design.client.after;
 
-/***
- * 扬彩设计平台接口常量类
+import org.zhiqim.kernel.json.Jsons;
+
+import com.yangcai.design.client.YangcaiClientResponse;
+
+/**
+ * 售后同步响应
  *
- * @version v1.0.0 @author lgz 2018-12-18 新建与整理
+ * @version v1.0.0 @author lgz 2018-12-22 新建与整理
  */
-public interface YangcaiApi
+public class DesignAfterCancelResponse extends YangcaiClientResponse
 {
-    /***创建订单接口*/
-    public final static String  ORDER_CREATE                    = "design.order.create";
-    /***订单同步接口*/
-    public final static String  ORDER_SYN                       = "design.order.syn";
-
+    //写参数字段
+    private boolean        isCanceled;//                                          是否已取消
+    protected void buildResponse(String json)
+    {
+        setCanceled(Jsons.getBoolean(json, "isCanceled"));
+    }
+    public boolean isCanceled()
+    {
+        return isCanceled;
+    }
+    public void setCanceled(boolean isCanceled)
+    {
+        this.isCanceled = isCanceled;
+    }
     
-    
-    
-    
-    /******************************/
-    //****订单部分
-    /******************************/
-    /***售后创建接口*/
-    public final static String  AFTER_CREATE                    = "design.after.create";
-    /***售后同步接口*/
-    public final static String  AFTER_SYN                       = "design.after.syn";
-    /***售后取消接口*/
-    public final static String  AFTER_CANCEL                    = "design.after.cancel";
-    /***申诉退回接口*/
-    public final static String  AFTER_COMPLAIN_RETURN           = "design.after.complain.return";
 }
