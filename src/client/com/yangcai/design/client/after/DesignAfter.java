@@ -37,10 +37,14 @@ public class DesignAfter
     private int                 afterStatus;        //处理状态
     private long                problemType;        //问题类型
     private String              problemDesc;        //问题描述
-    private Timestamp           createTime; 
-    private Timestamp           modifyTime; 
-    private long                merchantId;
-    private String              outAfsId;
+    private Timestamp            createTime; 
+    private Timestamp            modifyTime; 
+    private long                 merchantId;
+    private String                 outAfsId;
+    private String   designerComplainReason;        //设计师申诉原因
+    private String         designReturnNote;        //设计师申诉原因
+    private String          afterFinishNote;        //售后完成备注
+    
     private List<YangcaiApiFile> apiFiles;
     public long getDesignId()
     {
@@ -122,7 +126,30 @@ public class DesignAfter
     {
         this.apiFiles = apiFiles;
     }
-    
+    public String getDesignerComplainReason()
+    {
+        return designerComplainReason;
+    }
+    public void setDesignerComplainReason(String designerComplainReason)
+    {
+        this.designerComplainReason = designerComplainReason;
+    }
+    public String getDesignReturnNote()
+    {
+        return designReturnNote;
+    }
+    public void setDesignReturnNote(String designReturnNote)
+    {
+        this.designReturnNote = designReturnNote;
+    }
+    public String getAfterFinishNote()
+    {
+        return afterFinishNote;
+    }
+    public void setAfterFinishNote(String afterFinishNote)
+    {
+        this.afterFinishNote = afterFinishNote;
+    }
     public String toString()
     {
         return Jsons.toString(this);
