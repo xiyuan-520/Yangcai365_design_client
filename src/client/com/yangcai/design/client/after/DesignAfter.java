@@ -42,7 +42,7 @@ public class DesignAfter
     private long                 merchantId;
     private String                 outAfsId;
     private String   designerComplainReason;        //设计师申诉原因
-    private String         designReturnNote;        //设计师申诉原因
+    private String  designComplainCheckNote;        //售后申诉审核备注
     private String          afterFinishNote;        //售后完成备注
     
     private List<YangcaiApiFile> apiFiles;
@@ -134,13 +134,14 @@ public class DesignAfter
     {
         this.designerComplainReason = designerComplainReason;
     }
-    public String getDesignReturnNote()
+    
+    public String getDesignComplainCheckNote()
     {
-        return designReturnNote;
+        return designComplainCheckNote;
     }
-    public void setDesignReturnNote(String designReturnNote)
+    public void setDesignComplainCheckNote(String designComplainCheckNote)
     {
-        this.designReturnNote = designReturnNote;
+        this.designComplainCheckNote = designComplainCheckNote;
     }
     public String getAfterFinishNote()
     {
