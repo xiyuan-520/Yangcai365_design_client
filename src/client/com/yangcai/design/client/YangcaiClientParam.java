@@ -27,7 +27,7 @@ public class YangcaiClientParam
 {
     private String restUrl = null; // 应用API调用地址
 
-    private String merchantId; // API调用用户昵称 或者 商户编号
+    private String appKey;     //API调用用户昵称 或者 商户编号
     private String appSecret; // API调用用户密钥
 
     private int connectTimeout = 10; // API调用时允许的连接超时时长
@@ -53,16 +53,6 @@ public class YangcaiClientParam
     public void setRestUrl(String restUrl)
     {
         this.restUrl = restUrl;
-    }
-
-    public String getMerchantId()
-    {
-        return merchantId;
-    }
-
-    public void setMerchantId(String merchantId)
-    {
-        this.merchantId = merchantId;
     }
 
     public String getAppSecret()
@@ -99,5 +89,15 @@ public class YangcaiClientParam
             return;
 
         this.readTimeout = readTimeout;
+    }
+
+    public String getAppKey()
+    {
+        return appKey;
+    }
+
+    public void setAppKey(String appKey)
+    {
+        this.appKey = appKey;
     }
 }

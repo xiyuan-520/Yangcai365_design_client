@@ -69,7 +69,7 @@ public abstract class YangcaiClientRequest<T extends YangcaiClientResponse> impl
     /** 增加INT参数 */
     protected void addParam(String key, int value)
     {
-        if (value == 0)
+        if (value == -1)
             return;
 
         paramMap.put(key, "" + value);
@@ -78,7 +78,7 @@ public abstract class YangcaiClientRequest<T extends YangcaiClientResponse> impl
     /** 增加LONG参数 */
     protected void addParam(String key, long value)
     {
-        if (value == 0)
+        if (value == -1)
             return;
 
         paramMap.put(key, "" + value);
@@ -87,7 +87,7 @@ public abstract class YangcaiClientRequest<T extends YangcaiClientResponse> impl
     /** 增加String参数 */
     protected void addParam(String key, String value)
     {
-        if (Validates.isEmpty(value))
+        if (Validates.isEmptyBlank(value))
             return;
 
         paramMap.put(key, value);
@@ -102,7 +102,7 @@ public abstract class YangcaiClientRequest<T extends YangcaiClientResponse> impl
     /** 增加Object参数 */
     protected void addParam(String key, Object value)
     {
-        if (value == null)
+        if (Validates.isEmpty(value))
             return;
 
         paramMap.put(key, Jsons.toString(value));
@@ -114,15 +114,15 @@ public abstract class YangcaiClientRequest<T extends YangcaiClientResponse> impl
      * 
      * @param appSecret 传入密钥
      */
-    public void buildSign(String merchantId, String appSecret)
+    public void buildSign(String appKey, String appSecret)
     {
         // 系统参数
         addParam("method", method);
         addParam("timestamp", timestamp);
-        addParam("merchantId", merchantId);
+        addParam("appKey", appKey);
 
         StringBuffer strb = new StringBuffer();
-        strb.append(appSecret).append(method).append(timestamp).append(merchantId).append(appSecret);
+        strb.append(appSecret).append(method).append(timestamp).append(appKey).append(appSecret);
         this.sign = MD5.encodeUTF8(strb.toString());
     }
 

@@ -14,35 +14,48 @@
  * 
  * 除非法律需要或书面同意，软件由原始码方式提供，无任何明示或暗示的保证和条件。详见完整许可证的权限和限制。
  */
-package com.yangcai.design.client;
+package com.yangcai.design.client.order.update;
+
+import org.zhiqim.kernel.json.Jsons;
+
+import com.yangcai.design.client.YangcaiClientResponse;
 
 /***
- * 扬彩设计平台接口常量类
+ * TODO：类功能介绍
  *
- * @version v1.0.0 @author lgz 2018-12-18 新建与整理
+ * @version v1.0.0 @author lgz 2019-1-10 新建与整理
  */
-public interface YangcaiApi
+public class DesignOrderUpdateSpecificationResponse extends YangcaiClientResponse
 {
-    /***创建订单接口*/
-    public final static String  ORDER_CREATE                    = "design.order.create";
-    /**修改订单规格*/
-    public final static String  ORDER_UPDATE_SPECIFICATION      = "design.order.update.specification";
-    /***订单同步接口*/
-    public final static String  ORDER_SYN                       = "design.order.syn";
+    private long merchantId;
+    private long designId;
+    protected void buildResponse(String json)
+    {
+        setDesignId(Jsons.getLong(json, "designId"));
+        setMerchantId(Jsons.getLong(json, "merchantId"));
+    }
+    
+    public long getMerchantId()
+    {
+        return merchantId;
+    }
+    public void setMerchantId(long merchantId)
+    {
+        this.merchantId = merchantId;
+    }
 
-    
-    
-    
-    
-    /******************************/
-    //****订单部分
-    /******************************/
-    /***售后创建接口*/
-    public final static String  AFTER_CREATE                    = "design.after.create";
-    /***售后同步接口*/
-    public final static String  AFTER_SYN                       = "design.after.syn";
-    /***售后取消接口*/
-    public final static String  AFTER_CANCEL                    = "design.after.cancel";
-    /***申诉退回接口*/
-    public final static String  AFTER_COMPLAIN_RETURN           = "design.after.complain.return";
+    public long getDesignId()
+    {
+        return designId;
+    }
+
+    public void setDesignId(long designId)
+    {
+        this.designId = designId;
+    }
+
+    public String toString()
+    {
+        return Jsons.toString(this);
+    }
 }
