@@ -16,11 +16,23 @@
  */
 package com.yangcai.design.client;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.zhiqim.kernel.constants.SignConstants;
+import org.zhiqim.kernel.json.Jsons;
+import org.zhiqim.kernel.util.Amounts;
 import org.zhiqim.kernel.util.DateTimes;
+import org.zhiqim.kernel.util.Ints;
+import org.zhiqim.kernel.util.Lists;
+import org.zhiqim.kernel.util.Longs;
+import org.zhiqim.kernel.util.Strings;
+import org.zhiqim.kernel.util.Validates;
 
 import com.yangcai.design.client.after.DesignAfterCreateResponse;
 import com.yangcai.design.client.order.DesignOrder;
+import com.yangcai.design.client.order.DesignOrderCreateRequest;
+import com.yangcai.design.client.order.DesignOrderCreateResponse;
 import com.yangcai.design.client.order.DesignOrderSynRequest;
 import com.yangcai.design.client.order.DesignOrderSynResponse;
 import com.yangcai.design.client.order.update.DesignOrderUpdateSpecificationRequest;
@@ -95,10 +107,56 @@ public class YangcaiTest implements SignConstants
         specReq.setUserMobile("修改的联系手机");
         specReq.setUserQq("修改的qq");
         specReq.setUserWx("修改的wx");
-        DesignOrderUpdateSpecificationResponse specResp = YangcaiClient.execute(specReq, param);
-        System.out.println(specResp.getResponseText());
+//        DesignOrderUpdateSpecificationResponse specResp = YangcaiClient.execute(specReq, param);
+//        System.out.println(specResp.getResponseText());
         
-//        //售后创建接口
+//        订单创建
+        DesignOrderCreateRequest ocReq = new DesignOrderCreateRequest();
+        ocReq.setMerchantId(Longs.toLong("1823193185001"));                                                       
+        ocReq.setOutId(Longs.toLong("1000000"));                                                                 
+        ocReq.setDesignType(1);                                                       
+        ocReq.setIndustryId(4690);                                                       
+        ocReq.setDraftType(1);                                                           
+        ocReq.setDesignPage(2);                                                         
+        ocReq.setOrderText("测试名片");                                                                       
+        ocReq.setAfterNames("测试后加工");                                                                     
+        ocReq.setPrintSpecial("特殊工艺");                                                                 
+        ocReq.setDesignWidth(92);                                                   
+        ocReq.setDesignHeight(56);                                                 
+        ocReq.setPrintKs(1);                                                               
+        ocReq.setPrintMs(1);                                                               
+        ocReq.setPrintWidth(92);                 
+        ocReq.setPrintHeight(23);              
+        ocReq.setAmount(80);                             
+        ocReq.setUrgent(true);                                                          
+        ocReq.setUserContact("联系人");                                                                   
+        ocReq.setUserMobile("电话");                                                                     
+        ocReq.setUserQq("qqq");                                                                             
+        ocReq.setUserWx("wxwx");                                                                             
+        ocReq.setUserText("用户文字资料");                                                                         
+        ocReq.setUserNotice("用户注意事项");                                                                     
+        ocReq.setServicesMessage("客服留言");                                                           
+        ocReq.setShopNick("店铺昵称");                                                                         
+        ocReq.setBuyerNick("卖家昵称");
+        
+        
+        List<YangcaiApiFile> list = new ArrayList<YangcaiApiFile>();
+        YangcaiApiFile file1 = new YangcaiApiFile();
+        file1.setDownUrl("http://yangcai-taobao.oss-cn-shenzhen.aliyuncs.com/20190111/EndFile/1901111611401813.pdf");
+        file1.setFileName("1901111611401813.pdf");
+        file1.setFileExt(".");
+        file1.setFileSize(22);
+        
+        list.add(file1);
+        ocReq.setApiFiles(list);                                            
+        DesignOrderCreateResponse ocResp = YangcaiClient.execute(ocReq, param);
+        System.out.println(ocResp.getResponseText());
+        String fileExt = ".pdf";
+        System.out.println(Strings.replaceAll(fileExt, "\\.", ""));
+        
+        
+        
+//        //售后            
 //        long designId = 1805121158191104L;
 //        DesignAfterCreateRequest afscreq = new DesignAfterCreateRequest();
 //        afscreq.setDesignId(designId);
@@ -147,6 +205,11 @@ public class YangcaiTest implements SignConstants
 //        
 //        Object dss= 1;
 //        System.out.println(dss.toString());
+//        String printWidth = "-1";
+//        
+//        boolean b = (Validates.isNotEmptyBlank(printWidth) && (!Validates.isFloat(printWidth) || Float.valueOf(printWidth) < 0));
+//        System.out.println(b);
+        
     }
 }
 

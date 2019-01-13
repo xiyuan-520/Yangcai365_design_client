@@ -21,6 +21,7 @@ import java.util.TreeMap;
 
 import org.zhiqim.kernel.json.Jsons;
 import org.zhiqim.kernel.util.DateTimes;
+import org.zhiqim.kernel.util.Strings;
 import org.zhiqim.kernel.util.Urls;
 import org.zhiqim.kernel.util.Validates;
 import org.zhiqim.kernel.util.codes.MD5;
@@ -90,7 +91,7 @@ public abstract class YangcaiClientRequest<T extends YangcaiClientResponse> impl
         if (Validates.isEmptyBlank(value))
             return;
 
-        paramMap.put(key, value);
+        paramMap.put(key, Strings.trim(value));
     }
 
     /** 增加boolean参数 */

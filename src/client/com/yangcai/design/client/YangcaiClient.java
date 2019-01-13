@@ -28,6 +28,7 @@ public class YangcaiClient implements HttpConstants
     {
         if (param == null || !param.isValid())
             throw new RuntimeException("未配置接口参数或参数不正确不允许调用");
+        
         T resp = req.newResponse();
         req.buildSign(param.getAppKey(), param.getAppSecret());
         String queryString = req.buildQueryString();
