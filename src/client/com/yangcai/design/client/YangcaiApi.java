@@ -16,6 +16,7 @@
  */
 package com.yangcai.design.client;
 
+
 /***
  * 扬彩设计平台接口常量类
  *
@@ -25,6 +26,8 @@ public interface YangcaiApi
 {
     /***创建订单接口*/
     public final static String  ORDER_CREATE                    = "design.order.create";
+    /***创建补单接口*/
+    public final static String  ORDER_RE_CREATE                 = "design.order.recreate";
     /**修改订单规格*/
     public final static String  ORDER_UPDATE_SPECIFICATION      = "design.order.update.specification";
     /***订单同步接口*/

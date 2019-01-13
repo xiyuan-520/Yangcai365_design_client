@@ -20,26 +20,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.zhiqim.kernel.constants.SignConstants;
-import org.zhiqim.kernel.json.Jsons;
-import org.zhiqim.kernel.util.Amounts;
 import org.zhiqim.kernel.util.DateTimes;
-import org.zhiqim.kernel.util.Ints;
-import org.zhiqim.kernel.util.Lists;
 import org.zhiqim.kernel.util.Longs;
-import org.zhiqim.kernel.util.Strings;
-import org.zhiqim.kernel.util.Validates;
 
-import com.yangcai.design.client.after.DesignAfterCreateResponse;
-import com.yangcai.design.client.order.DesignOrder;
 import com.yangcai.design.client.order.DesignOrderCreateRequest;
 import com.yangcai.design.client.order.DesignOrderCreateResponse;
+import com.yangcai.design.client.order.DesignOrderRecreateRequest;
+import com.yangcai.design.client.order.DesignOrderRecreateResponse;
 import com.yangcai.design.client.order.DesignOrderSynRequest;
-import com.yangcai.design.client.order.DesignOrderSynResponse;
 import com.yangcai.design.client.order.update.DesignOrderUpdateSpecificationRequest;
-import com.yangcai.design.client.order.update.DesignOrderUpdateSpecificationResponse;
 
 public class YangcaiTest implements SignConstants
 {
+    
     @SuppressWarnings("unused")
     public static void main(String[] args)
     {
@@ -144,18 +137,22 @@ public class YangcaiTest implements SignConstants
         YangcaiApiFile file1 = new YangcaiApiFile();
         file1.setDownUrl("http://yangcai-taobao.oss-cn-shenzhen.aliyuncs.com/20190111/EndFile/1901111611401813.pdf");
         file1.setFileName("1901111611401813.pdf");
-        file1.setFileExt(".");
+        file1.setFileExt("");
         file1.setFileSize(22);
         
         list.add(file1);
         ocReq.setApiFiles(list);                                            
-        DesignOrderCreateResponse ocResp = YangcaiClient.execute(ocReq, param);
-        System.out.println(ocResp.getResponseText());
-        String fileExt = ".pdf";
-        System.out.println(Strings.replaceAll(fileExt, "\\.", ""));
+//        DesignOrderCreateResponse ocResp = YangcaiClient.execute(ocReq, param);
+//        System.out.println(ocResp.getMerchantId());
         
-        
-        
+        //补单接口
+        DesignOrderRecreateRequest rcReq = new DesignOrderRecreateRequest();
+        rcReq.setMerchantId(Longs.toLong("1823193185001"));                                                       
+        rcReq.setDesignSrcId(1000000);
+        rcReq.setNewOutId(10000005);
+        rcReq.setRedesignReason("补单原因");
+//        DesignOrderRecreateResponse rcResp = YangcaiClient.execute(rcReq, param);
+//        System.out.println(rcResp);
 //        //售后            
 //        long designId = 1805121158191104L;
 //        DesignAfterCreateRequest afscreq = new DesignAfterCreateRequest();

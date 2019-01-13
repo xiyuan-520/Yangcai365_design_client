@@ -21,19 +21,20 @@ import org.zhiqim.kernel.json.Jsons;
 import com.yangcai.design.client.YangcaiClientResponse;
 
 /****
- * 订单创建响应
+ * 创建补单响应
  *
  * @version v1.0.0 @author lgz 2019-1-12 新建与整理
  */
-public class DesignOrderCreateResponse extends YangcaiClientResponse
+public class DesignOrderRecreateResponse extends YangcaiClientResponse
 {
     private long merchantId;
-    private long designId;
+    private long newDesignId;
     protected void buildResponse(String json)
     {
         setMerchantId(Jsons.getLong(json, "merchantId"));
-        setDesignId(Jsons.getLong(json, "designId"));
+        setNewDesignId(Jsons.getLong(json, "newDesignId"));
     }
+    
     public long getMerchantId()
     {
         return merchantId;
@@ -42,18 +43,14 @@ public class DesignOrderCreateResponse extends YangcaiClientResponse
     {
         this.merchantId = merchantId;
     }
-    public long getDesignId()
+    public long getNewDesignId()
     {
-        return designId;
+        return newDesignId;
     }
-
-
-    public void setDesignId(long designId)
+    public void setNewDesignId(long newDesignId)
     {
-        this.designId = designId;
+        this.newDesignId = newDesignId;
     }
-
-
     public String toString()
     {
         return Jsons.toString(this);
