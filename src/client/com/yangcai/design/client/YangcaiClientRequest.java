@@ -109,6 +109,57 @@ public abstract class YangcaiClientRequest<T extends YangcaiClientResponse> impl
         paramMap.put(key, Jsons.toString(value));
     }
     
+    /********************************************************/
+    // 以下为提供的外部调用方法
+    /********************************************************/
+    /**request 另加参数时 调用 增加INT参数 */
+    public void addOtherParam(String key, int value)
+    {
+        if (value == -1)
+            return;
+
+        paramMap.put(key, "" + value);
+    }
+
+    /**request 另加参数时 调用 增加LONG参数 */
+    public void addOtherParam(String key, long value)
+    {
+        if (value == -1)
+            return;
+
+        paramMap.put(key, "" + value);
+    }
+    /**request 另加参数时 调用 增加double参数 */
+    public void addOtherParam(String key, double value)
+    {
+        if (value == -1)
+            return;
+
+        paramMap.put(key, "" + value);
+    }
+    /** 增加String参数 */
+    public void addOtherParam(String key, String value)
+    {
+        if (Validates.isEmptyBlank(value))
+            return;
+
+        paramMap.put(key, Strings.trim(value));
+    }
+
+    /**request 另加参数时 调用 增加boolean参数 */
+    public void addOtherParam(String key, boolean value)
+    {
+        paramMap.put(key, "" + value);
+    }
+
+    /**request 另加参数时 调用 增加Object参数 */
+    public void addOtherParam(String key, Object value)
+    {
+        if (Validates.isEmpty(value))
+            return;
+
+        paramMap.put(key, Jsons.toString(value));
+    }
     
     /**
      * 生成签名,本方法需子类实现buildSignBody

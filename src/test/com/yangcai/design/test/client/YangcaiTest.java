@@ -14,7 +14,7 @@
  * 
  * 除非法律需要或书面同意，软件由原始码方式提供，无任何明示或暗示的保证和条件。详见完整许可证的权限和限制。
  */
-package com.yangcai.design.client;
+package com.yangcai.design.test.client;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +23,9 @@ import org.zhiqim.kernel.constants.SignConstants;
 import org.zhiqim.kernel.util.DateTimes;
 import org.zhiqim.kernel.util.Longs;
 
+import com.yangcai.design.client.YangcaiApiFile;
+import com.yangcai.design.client.YangcaiClient;
+import com.yangcai.design.client.YangcaiClientParam;
 import com.yangcai.design.client.order.DesignOrderCreateRequest;
 import com.yangcai.design.client.order.DesignOrderCreateResponse;
 import com.yangcai.design.client.order.DesignOrderRecreateRequest;
@@ -137,12 +140,13 @@ public class YangcaiTest implements SignConstants
         YangcaiApiFile file1 = new YangcaiApiFile();
         file1.setDownUrl("http://yangcai-taobao.oss-cn-shenzhen.aliyuncs.com/20190111/EndFile/1901111611401813.pdf");
         file1.setFileName("1901111611401813.pdf");
-        file1.setFileExt("");
+        file1.setFileExt("pdf");
         file1.setFileSize(22);
         
         list.add(file1);
         ocReq.setApiFiles(list);                                            
-//        DesignOrderCreateResponse ocResp = YangcaiClient.execute(ocReq, param);
+        DesignOrderCreateResponse ocResp = YangcaiClient.execute(ocReq, param);
+//        System.out.println(ocResp);
 //        System.out.println(ocResp.getMerchantId());
         
         //补单接口
@@ -151,8 +155,8 @@ public class YangcaiTest implements SignConstants
         rcReq.setDesignSrcId(1000000);
         rcReq.setNewOutId(10000005);
         rcReq.setRedesignReason("补单原因");
-//        DesignOrderRecreateResponse rcResp = YangcaiClient.execute(rcReq, param);
-//        System.out.println(rcResp);
+        DesignOrderRecreateResponse rcResp = YangcaiClient.execute(rcReq, param);
+        System.out.println(rcResp);
 //        //售后            
 //        long designId = 1805121158191104L;
 //        DesignAfterCreateRequest afscreq = new DesignAfterCreateRequest();
