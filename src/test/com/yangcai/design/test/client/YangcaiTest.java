@@ -29,9 +29,13 @@ import com.yangcai.design.client.YangcaiClientParam;
 import com.yangcai.design.client.order.DesignOrderCreateRequest;
 import com.yangcai.design.client.order.DesignOrderCreateResponse;
 import com.yangcai.design.client.order.DesignOrderRecreateRequest;
-import com.yangcai.design.client.order.DesignOrderRecreateResponse;
 import com.yangcai.design.client.order.DesignOrderSynRequest;
+import com.yangcai.design.client.order.update.DesignOrderUpdateInfoRequest;
+import com.yangcai.design.client.order.update.DesignOrderUpdateInfoResponse;
 import com.yangcai.design.client.order.update.DesignOrderUpdateSpecificationRequest;
+import com.yangcai.design.client.order.update.DesignOrderUpdateTextInfoRequest;
+import com.yangcai.design.client.order.update.DesignOrderUpdateTextInfoResponse;
+import com.yangcai.design.client.order.update.ReplaceCustomFileRequest;
 
 public class YangcaiTest implements SignConstants
 {
@@ -145,7 +149,7 @@ public class YangcaiTest implements SignConstants
         
         list.add(file1);
         ocReq.setApiFiles(list);                                            
-        DesignOrderCreateResponse ocResp = YangcaiClient.execute(ocReq, param);
+//        DesignOrderCreateResponse ocResp = YangcaiClient.execute(ocReq, param);
 //        System.out.println(ocResp);
 //        System.out.println(ocResp.getMerchantId());
         
@@ -155,8 +159,60 @@ public class YangcaiTest implements SignConstants
         rcReq.setDesignSrcId(1000000);
         rcReq.setNewOutId(10000005);
         rcReq.setRedesignReason("补单原因");
-        DesignOrderRecreateResponse rcResp = YangcaiClient.execute(rcReq, param);
-        System.out.println(rcResp);
+//        DesignOrderRecreateResponse rcResp = YangcaiClient.execute(rcReq, param);
+//        System.out.println(rcResp);
+        
+        
+        
+        //更换客户资料
+        ReplaceCustomFileRequest rcfReq = new ReplaceCustomFileRequest();
+        rcfReq.setMerchantId(merchantId);
+        rcfReq.setDesignId(190046623003501L);
+        
+        List<YangcaiApiFile> rcfReqFiles = new ArrayList<YangcaiApiFile>();
+        YangcaiApiFile rcfReqFile = new YangcaiApiFile();
+        rcfReqFile.setDownUrl("http://yangcai-taobao.oss-cn-shenzhen.aliyuncs.com/20190111/EndFile/1901111611401813.pdf");
+        rcfReqFile.setFileName("1901111611401813.pdf");
+        rcfReqFile.setFileExt("pdf");
+        rcfReqFile.setFileSize(22);
+        rcfReqFiles.add(rcfReqFile);
+        rcfReq.setApiFiles(rcfReqFiles);
+//        ReplaceCustomFileResponse rcfResp = YangcaiClient.execute(rcfReq, param);
+//        System.out.println(rcfResp.getResponseText());
+//        System.out.println(rcfResp.isReplaced());
+        
+        
+        DesignOrderUpdateTextInfoRequest doutiReq = new DesignOrderUpdateTextInfoRequest();
+        doutiReq.setMerchantId(merchantId);
+        doutiReq.setDesignId(190046623003501L);
+        doutiReq.setUserWx("wxwxwx");
+        doutiReq.setUserText("textetxttext");
+        doutiReq.setUserQq("qqqqqqqqq");
+        doutiReq.setUserNotice("userNoticeuserNotice");
+        doutiReq.setUserMobile("userMobileuserMobile");
+//        DesignOrderUpdateTextInfoResponse doutiResp = YangcaiClient.execute(doutiReq, param);
+//        System.out.println(doutiResp.getResponseText());
+//        System.out.println(doutiResp.isUpdated());
+        
+        DesignOrderUpdateInfoRequest douiReq = new DesignOrderUpdateInfoRequest();
+        douiReq.setMerchantId(merchantId);
+        douiReq.setDesignId(190046623003501L);
+        douiReq.setIndustryId(6934);
+        douiReq.setPrintSpecial("特殊工艺");
+        douiReq.setServicesMessage("客服留言");
+        douiReq.setUrgent(true);
+        douiReq.setUserMobile("用户手机");
+        douiReq.setUserQq("qqqqqqq");
+        douiReq.setUserWx("wxwdxwxwxwxwxwx");
+        
+        
+//        DesignOrderUpdateInfoResponse douiResp = YangcaiClient.execute(douiReq, param);
+//        System.out.println(douiResp.getResponseText());
+//        System.out.println(douiResp.isUpdated());
+        
+        
+        
+        
 //        //售后            
 //        long designId = 1805121158191104L;
 //        DesignAfterCreateRequest afscreq = new DesignAfterCreateRequest();

@@ -17,6 +17,7 @@
 package com.yangcai.design.client;
 
 
+
 /***
  * 扬彩设计平台接口常量类
  *
@@ -32,7 +33,12 @@ public interface YangcaiApi
     public final static String  ORDER_UPDATE_SPECIFICATION      = "design.order.update.specification";
     /***订单同步接口*/
     public final static String  ORDER_SYN                       = "design.order.syn";
-
+    /**更换客户文件资料**/
+    public final static String  ORDER_UPDATE_CUSTOM_FILE        = "design.order.update.custom.file";
+    /**修改订单文字资料*/
+    public final static String  ORDER_UPDATE_TEXT_INFO          = "design.order.update.text.info";
+    /**订单信息修改**/
+    public final static String  ORDER_UPDATE_INFO               = "design.order.update.info";
     
     
     
