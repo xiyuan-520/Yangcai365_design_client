@@ -1,1 +1,5 @@
 /bin
+/OssDownload/database
+/OssDownload/logs
+/OssDownload/bin
+/OssDownload/_release/OssDownload/logs

@@ -3,7 +3,7 @@
 	<section name="ExportProject">
 		<item value="" key="excludeDirs"/>
 		<item value="" key="excludePackages"/>
-		<item value="" key="excludeResourceDirs"/>
+		<item value="./document,./logs,./database,./_release" key="excludeResourceDirs"/>
 		<item value="false" key="isDivided"/>
 		<item value="false" key="isExportAndZipProject"/>
 		<item value="false" key="isExportJavaSource"/>

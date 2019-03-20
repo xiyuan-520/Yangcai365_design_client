@@ -17,13 +17,16 @@
 package com.zhiqim.oss.download;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.zhiqim.kernel.Global;
 import org.zhiqim.kernel.Servicer;
 import org.zhiqim.kernel.logging.Log;
 import org.zhiqim.kernel.logging.LogFactory;
 import org.zhiqim.kernel.util.Urls;
+import org.zhiqim.kernel.util.Validates;
 import org.zhiqim.orm.ORM;
 import org.zhiqim.orm.ZTable;
 import org.zhiqim.orm.dbo.Selector;
@@ -49,30 +52,29 @@ public class OssDownloadMain extends Servicer
         OssServer server = service.getServer();
         int size = 0;
         int page = 1;
-        
         OssFile item = ORM.get(ZTable.class).item(OssFile.class, new Selector("fileKey,ossMarker,fileIndex").addMustIsNotNull("ossMarker").addOrderbyDesc("fileIndex"));
         String marker = item == null ? null : item.getOssMarker();
         size = item == null ? 0 : item.getFileIndex();
         ObjectListing objectListing = null;
+        Map<String, Integer> dirSize = new HashMap<>();
         do
         {
             long t1 = System.currentTimeMillis();
-            objectListing = service.getObjectListing(bucketName, prefix_dir, marker, 1000);
+            objectListing = service.getObjectListing(bucketName, prefix_dir, marker, 10);
             long t2 = System.currentTimeMillis();
-            System.out.println("第["+page+"]获取共用["+(t2 - t1)+"]毫秒");
+            System.out.println("第["+page+"]页查询共用["+(t2 - t1)+"]毫秒");
             List<OSSObjectSummary> tlist = objectListing.getObjectSummaries();
-            marker = objectListing.getNextMarker();
+            marker = objectListing.getNextMarker();//必须标记否则查询到相同数据
             List<OssFile> listFiles = new ArrayList<>();
             for (OSSObjectSummary ossFile : tlist)
             {
                 ++size;
+                
                 String fileKey = ossFile.getKey();
                 String ossPrefix = prefix_dir;
                 String ossDir = fileKey.replaceFirst(prefix_dir, "").substring(0, fileKey.lastIndexOf("/"));
                 String fileName = fileKey.substring(fileKey.lastIndexOf("/")+1);
                 int downloadFlag = 0;
-                System.out.println(ossDir);
-                
                 OssFile osFile = new OssFile();
                 osFile.setDownloadFlag(downloadFlag);
                 osFile.setFileKey(fileKey);
@@ -80,6 +82,12 @@ public class OssDownloadMain extends Servicer
                 osFile.setOssDir(ossDir);
                 osFile.setOssPrefix(ossPrefix);
                 osFile.setFileIndex(size);
+                
+                String ossFirstDir = ossDir.substring(0, ossDir.indexOf("/"));
+                Integer cout = dirSize.get(ossFirstDir);
+                cout = cout == null ? 1 : cout+1;
+                dirSize.put(ossFirstDir, cout);
+                
 //                osFile.setOssMarker(marker);
                 //http://yangcai-taobao.oss-cn-shenzhen.aliyuncs.com/00000000/mnt/taobao/%E5%AA%92%E4%BD%93%E7%B4%A0%E6%9D%90/canvas/1712291243403505/imp_1801081745119667.jpg
                 OSSClient ossClient = null;
@@ -106,11 +114,27 @@ public class OssDownloadMain extends Servicer
             {
                 listFiles.get(listFiles.size() - 1).setOssMarker(marker);
                 ORM.get(ZTable.class).replaceBatch(listFiles);
+                System.out.println("第["+page+"]处理共用["+(System.currentTimeMillis() - t2)+"]毫秒");
+                log.info("已录入数据[%s]条 其中 %s", size, getInfo(dirSize));
             }
             
             page++;
         }
-        while (objectListing != null && objectListing.isTruncated() && page <=2);
+        while (objectListing != null && objectListing.isTruncated());
+        
+        
+        log.info("文件获取完成 共[%s]条 其中 %s", size, getInfo(dirSize));
         return false;
+    }
+    
+    private String getInfo(Map<String, Integer> dataMap)
+    {
+        StringBuilder sb = new StringBuilder();
+        for (String key : dataMap.keySet())
+        {
+            String str = !Validates.isEmptyBlank(sb.toString()) ? ""  : ", ["+key+"]["+dataMap.get(key)+"]条";
+            sb.append(str);
+        }
+        return sb.toString();
     }
 }
