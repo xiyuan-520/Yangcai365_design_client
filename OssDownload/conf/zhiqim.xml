@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE ZHIQIM-CONFIG PUBLIC "-//ZHIQIM //DTD Zhiqim-Config Configuration 1.5.0//EN" "http://zhiqim.org/xmldtds/zhiqim_config_1_5_0.dtd">
+<zhiqim-config>
+
+    <group id="boot" desc="系统启动配置">
+        <item key="name" value="OssDownload" type="protected" desc="系统名称" />
+        <item key="version" value="V1.0" type="protected" desc="系统版本" />
+        <item key="port" value="50080" type="protected" desc="系统监听端口，用于启动监听和命令关闭工程" />
+        <item key="process" value="zhiqim" type="protected" desc="使用的进程名，MAC系统下该配置无效" />
+        <item key="args" value="-server -Xms64m -Xmx1024m" type="protected" desc="JVM参数" />
+    </group>
+
+    <group id="config" desc="系统其他配置文件，./开头表示工程相对路径下，绝对路径使用/或d:/等(Windows也使用顺斜杠作路径)">
+        <item key="logging" value="./conf/logging.xml" type="protected" desc="日志配置文件" />
+    </group>
+
+    <group id="service" desc="系统服务配置，有依赖时注意顺序，系统按顺序加载，按倒序销毁">
+        <item key="logging" value="org.zhiqim.kernel.logging.LogServer" type="protected" desc="日志服务" />
+        <item key="cutter" value="org.zhiqim.kernel.logging.LogLinuxNohupCutter" type="protected" desc="日志Linux切割服务" />
+        <item key="orm" value="org.zhiqim.orm.ORMServer" type="protected" desc="主数据库服务" />
+        <item key="oss" value="com.zhiqim.oss.service.OssServer" type="protected" desc="OSS服务" />
+        <item key="project" value="com.zhiqim.oss.download.OssDownloadMain" type="protected" desc="主数据库服务" />
+    </group>
+
+    <group id="orm" desc="SQLITE数据库连接方式">
+        <item key="dbType" value="sqlite" type="protected" desc="数据库类型,支持mysql|oracle|mssql|postgresql|sqlite|hsql" />
+        <item key="driver" value="org.sqlite.JDBC" type="protected" desc="数据库驱动" />
+        <item key="url" value="jdbc:sqlite:./database/zhiqim.db" type="protected" desc="数据库Url" />
+        <item key="user" value="root" type="protected" desc="数据库用户名" />
+        <item key="pass" value="root" type="private" desc="数据库密码" />
+        <item key="minPoolSize" value="20" type="protected" desc="线程池最小值" />
+        <item key="maxPoolSize" value="100" type="protected" desc="线程池最大值" />
+        <item key="maxKeepTime" value="7001" type="protected" desc="每连接最大保持时长，大于该值将重建连接，单位秒" />
+    </group>
+
+
+    <group id="oss" desc="oss参数配置">
+        <item key="endpointExternal" value="http://oss-cn-shenzhen.aliyuncs.com" type="protected" desc="外网访问域名" />
+        <item key="endpointInternal" value="http://oss-cn-shenzhen-internal.aliyuncs.com" type="protected" desc="内网访问域名" />
+        <item key="accessKeyId" value="LTAIkwMBGmiuFGTq" type="protected" desc="访问KEY" />
+        <item key="accessKeySecret" value="wQ0fkSDHjIjmontIQK3e0hbX9kSA6f" type="protected" desc="访问密钥" />
+        <item key="bucketName" value="yangcai-taobao" type="protected" desc="OSS bucketName" />
+        <item key="prefix_dir" value="00000000/mnt/taobao/媒体素材/" type="protected" desc="Oss前缀路径" />
+        <item key="isInternal" value="false" type="protected" desc="是否内网" />
+    </group>
+</zhiqim-config>

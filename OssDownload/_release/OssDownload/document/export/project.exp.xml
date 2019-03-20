@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="zhiqim">
+	<section name="ExportProject">
+		<item value="" key="excludeDirs"/>
+		<item value="" key="excludePackages"/>
+		<item value="" key="excludeResourceDirs"/>
+		<item value="false" key="isDivided"/>
+		<item value="false" key="isExportAndZipProject"/>
+		<item value="false" key="isExportJavaSource"/>
+		<item value="true" key="isGenExe"/>
+		<item value="false" key="isGenZip"/>
+		<item value="false" key="isIncludeJavaFile"/>
+		<item value="oss_download" key="jarName"/>
+		<item value="" key="metaInfoPath"/>
+		<item value="" key="projectConfPath"/>
+		<item value="" key="projectSourceName"/>
+		<item value="OssDownload" key="releaseName"/>
+		<item value="E:/GitHubCode/Yangcai365_design_client/OssDownload/_release" key="releasePath"/>
+	</section>
+</section>

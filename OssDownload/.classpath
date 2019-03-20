@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/dbo"/>
+	<classpathentry kind="src" path="src/main"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
+	<classpathentry kind="lib" path="lib/zhiqim.jar"/>
+	<classpathentry kind="lib" path="lib/zhiqim_orm.jar" sourcepath="E:/com.zhiqim/V1.5.0/ZhiqimDK/zhiqim_orm-src.jar"/>
+	<classpathentry kind="lib" path="lib/zhiqim_sqlite3.8.6_native.jar"/>
+	<classpathentry kind="lib" path="lib/aliyun-sdk-oss-2.8.2-sources.jar"/>
+	<classpathentry kind="lib" path="lib/aliyun-sdk-oss-2.8.2.jar"/>
+	<classpathentry kind="lib" path="lib/commons-codec-1.9.jar"/>
+	<classpathentry kind="lib" path="lib/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="lib/hamcrest-core-1.1.jar"/>
+	<classpathentry kind="lib" path="lib/httpclient-4.4.1.jar"/>
+	<classpathentry kind="lib" path="lib/httpcore-4.4.1.jar"/>
+	<classpathentry kind="lib" path="lib/jdom-1.1.jar"/>
+	<classpathentry kind="lib" path="lib/zhiqim_oss.jar" sourcepath="/YangcaiOss"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

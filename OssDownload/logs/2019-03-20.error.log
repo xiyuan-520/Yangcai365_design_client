@@ -1,0 +1,61 @@
+﻿2019-03-20 21:39:09,128 [main] FATAL - 不支持的数据库类型[null]
+2019-03-20 21:39:09,129 [main] FATAL - 服务[org.zhiqim.orm.ORMServer]初始化失败，退出工程
+2019-03-20 21:40:44,565 [main] FATAL - 不支持的数据库类型[null]
+2019-03-20 21:40:44,565 [main] FATAL - 服务[org.zhiqim.orm.ORMServer]初始化失败，退出工程
+2019-03-20 21:42:16,476 [main] FATAL - 不支持的数据库类型[null]
+2019-03-20 21:42:16,477 [main] FATAL - 服务[org.zhiqim.orm.ORMServer]初始化失败，退出工程
+2019-03-20 21:46:15,065 [main] FATAL - 不支持的数据库类型[null]
+2019-03-20 21:46:15,066 [main] FATAL - 服务[org.zhiqim.orm.ORMServer]初始化失败，退出工程
+2019-03-20 21:46:54,785 [main] FATAL - 不支持的数据库类型[null]
+2019-03-20 21:46:54,789 [main] FATAL - 服务[org.zhiqim.orm.ORMServer]初始化失败，退出工程
+2019-03-20 21:47:52,135 [main] ERROR - 初始化创建服务时异常，退出工程
+java.lang.NullPointerException
+	at com.zhiqim.oss.service.oss.OssService.getObjectListing(OssService.java:125)
+	at com.zhiqim.oss.download.OssDownloadMain.create(OssDownloadMain.java:50)
+	at org.zhiqim.kernel.Zhiqim.createService(Zhiqim.java:305)
+	at org.zhiqim.kernel.Zhiqim.startup(Zhiqim.java:137)
+	at org.zhiqim.kernel.Zhiqim.main(Zhiqim.java:76)
+2019-03-20 21:49:05,039 [main] ERROR - 初始化创建服务时异常，退出工程
+java.lang.NullPointerException
+	at com.zhiqim.oss.service.oss.OssService.getObjectListing(OssService.java:125)
+	at com.zhiqim.oss.download.OssDownloadMain.create(OssDownloadMain.java:50)
+	at org.zhiqim.kernel.Zhiqim.createService(Zhiqim.java:305)
+	at org.zhiqim.kernel.Zhiqim.startup(Zhiqim.java:137)
+	at org.zhiqim.kernel.Zhiqim.main(Zhiqim.java:76)
+2019-03-20 21:49:55,667 [main] FATAL - 服务[com.zhiqim.oss.download.OssDownloadMain]初始化失败，退出工程
+2019-03-20 21:53:23,711 [main] FATAL - 服务[com.zhiqim.oss.download.OssDownloadMain]初始化失败，退出工程
+2019-03-20 22:00:58,895 [main] FATAL - 服务[com.zhiqim.oss.download.OssDownloadMain]初始化失败，退出工程
+2019-03-20 22:08:31,977 [main] ERROR - 初始化创建服务时异常，退出工程
+java.lang.NullPointerException: 参数"bucketName"为空指针。
+	at com.aliyun.oss.common.utils.CodingUtils.assertParameterNotNull(CodingUtils.java:33)
+	at com.aliyun.oss.internal.OSSBucketOperation.listObjects(OSSBucketOperation.java:407)
+	at com.aliyun.oss.OSSClient.listObjects(OSSClient.java:445)
+	at com.zhiqim.oss.service.oss.OssService.getObjectListing(OssService.java:131)
+	at com.zhiqim.oss.download.OssDownloadMain.create(OssDownloadMain.java:54)
+	at org.zhiqim.kernel.Zhiqim.createService(Zhiqim.java:305)
+	at org.zhiqim.kernel.Zhiqim.startup(Zhiqim.java:137)
+	at org.zhiqim.kernel.Zhiqim.main(Zhiqim.java:76)
+2019-03-20 22:09:12,693 [main] FATAL - 服务[com.zhiqim.oss.download.OssDownloadMain]初始化失败，退出工程
+2019-03-20 22:11:46,955 [main] FATAL - 服务[com.zhiqim.oss.download.OssDownloadMain]初始化失败，退出工程
+2019-03-20 22:16:57,051 [main] FATAL - 服务[com.zhiqim.oss.download.OssDownloadMain]初始化失败，退出工程
+2019-03-20 22:26:36,628 [main] FATAL - 服务[com.zhiqim.oss.download.OssDownloadMain]初始化失败，退出工程
+2019-03-20 22:40:15,468 [main] ERROR - 初始化创建服务时异常，退出工程
+org.zhiqim.orm.ORMException: ZTable[replace][java.util.ArrayList][未找到相应的配置]
+	at org.zhiqim.orm.ZTableImplement.replace(ZTableImplement.java:588)
+	at org.zhiqim.orm.ZTableImplement.replace(ZTableImplement.java:571)
+	at com.zhiqim.oss.download.OssDownloadMain.create(OssDownloadMain.java:108)
+	at org.zhiqim.kernel.Zhiqim.createService(Zhiqim.java:305)
+	at org.zhiqim.kernel.Zhiqim.startup(Zhiqim.java:137)
+	at org.zhiqim.kernel.Zhiqim.main(Zhiqim.java:76)
+2019-03-20 22:44:25,788 [main] ERROR - 初始化创建服务时异常，退出工程
+org.zhiqim.orm.ORMException: ZTable[replace][java.util.ArrayList][未找到相应的配置]
+	at org.zhiqim.orm.ZTableImplement.replace(ZTableImplement.java:588)
+	at org.zhiqim.orm.ZTableImplement.replace(ZTableImplement.java:571)
+	at com.zhiqim.oss.download.OssDownloadMain.create(OssDownloadMain.java:108)
+	at org.zhiqim.kernel.Zhiqim.createService(Zhiqim.java:305)
+	at org.zhiqim.kernel.Zhiqim.startup(Zhiqim.java:137)
+	at org.zhiqim.kernel.Zhiqim.main(Zhiqim.java:76)
+2019-03-20 22:44:59,058 [main] FATAL - 服务[com.zhiqim.oss.download.OssDownloadMain]初始化失败，退出工程
+2019-03-20 22:46:27,734 [main] FATAL - 服务[com.zhiqim.oss.download.OssDownloadMain]初始化失败，退出工程
+2019-03-20 22:48:36,241 [main] FATAL - 服务[com.zhiqim.oss.download.OssDownloadMain]初始化失败，退出工程
+2019-03-20 22:49:07,726 [main] FATAL - 服务[com.zhiqim.oss.download.OssDownloadMain]初始化失败，退出工程
