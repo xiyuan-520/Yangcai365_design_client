@@ -7,7 +7,10 @@
         <item key="version" value="V1.0" type="protected" desc="系统版本" />
         <item key="port" value="50080" type="protected" desc="系统监听端口，用于启动监听和命令关闭工程" />
         <item key="process" value="zhiqim" type="protected" desc="使用的进程名，MAC系统下该配置无效" />
+        <item key="home" value="D:/Java/jdk1.7.0_80" type="protected" desc="JVM参数" />
         <item key="args" value="-server -Xms64m -Xmx1024m" type="protected" desc="JVM参数" />
+        <item key="libext" value="./libext" type="protected" desc="加载的库目录" />
+        <item key="include" value="*/bin,*/lib/*" type="protected" desc="扫描包含库模式，多个用逗号隔开，星号表示通配符" />
     </group>
 
     <group id="config" desc="系统其他配置文件，./开头表示工程相对路径下，绝对路径使用/或d:/等(Windows也使用顺斜杠作路径)">
@@ -23,9 +26,15 @@
     </group>
 
     <group id="orm" desc="SQLITE数据库连接方式">
+        <!-- 
         <item key="dbType" value="sqlite" type="protected" desc="数据库类型,支持mysql|oracle|mssql|postgresql|sqlite|hsql" />
         <item key="driver" value="org.sqlite.JDBC" type="protected" desc="数据库驱动" />
         <item key="url" value="jdbc:sqlite:./database/zhiqim.db" type="protected" desc="数据库Url" />
+         -->
+        <item key="dbType" value="mysql" type="protected" desc="数据库类型,支持 mysql |oracle|mssql|postgresql|sqlite|hsql" />
+        <item key="driver" value="org.zhiqim.mysql5_0_8.jdbc.Driver" type="protected" desc="数据库驱动" />
+        <item key="url" value="jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&amp;characterEncoding=UTF-8" type="protected" desc="数据库Url" />
+        
         <item key="user" value="root" type="protected" desc="数据库用户名" />
         <item key="pass" value="root" type="private" desc="数据库密码" />
         <item key="minPoolSize" value="20" type="protected" desc="线程池最小值" />

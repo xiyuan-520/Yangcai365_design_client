@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zhiqim-dbo>
 
-<config version="1.2.0" dbType="mysql" folder="../src/dbo" initDataWidth="820">
+<config version="1.2.0" dbType="sqlite" folder="../src/dbo" initDataWidth="820">
 <![CDATA[
 /*
  * 版权所有 (C) 2015 知启蒙(ZHIQIM) 保留所有权利。
@@ -13,21 +13,22 @@
 ]]>
 </config>
 
-<package name="com.zhiqim.oss.download" type="true" desc="临时文件dbo">
+<package name="com.zhiqim.oss.download.dbo" type="true" desc="下载dbo">
 
-    <table name="OSS_FILE" desc="oss文件信息" key="FILE_KEY" type="InnoDB">
-        <index name="IX_DOWNLOAD_FLAG" desc="下载状态" unique="false" column="DOWNLOAD_FLAG"/>
-        <index name="IX_FILE_INDEX" desc="文件个数" unique="false" column="FILE_INDEX"/>
+    <table name="OSS_FILE" desc="oss文件表" key="FILE_KEY" type="InnoDB">
+        <index name="IX_DOWNLOAD_FLAG" desc="IX_DOWNLOAD_FLAG" unique="false" column="DOWNLOAD_FLAG"/>
+        <index name="IX_FILE_INDEX" desc="FILE_INDEX" unique="false" column="FILE_INDEX"/>
         <index name="IX_OSS_URL" desc="OSS_URL" unique="false" column="OSS_URL"/>
+        <index name="IX_FILE_NAME" desc="FILE_NAME" unique="false" column="FILE_NAME"/>
 
-        <field column="FILE_KEY" type="string" length="400" notNull="true" desc="ossKEY"/>
-        <field column="OSS_PREFIX" type="string" length="400" notNull="false" desc="前缀路径"/>
-        <field column="OSS_DIR" type="string" length="400" notNull="true" desc="oss目录"/>
-        <field column="FILE_NAME" type="string" length="400" notNull="false" desc="文件名"/>
-        <field column="OSS_URL" type="string" length="2000" notNull="false" desc="OSS 访问路径"/>
-        <field column="DOWNLOAD_FLAG" type="int" length="" notNull="true" desc="下载标志 0 未下载 1 已下载"/>
-        <field column="OSS_MARKER" type="string" length="400" notNull="false" desc="oss MARKER"/>
-        <field column="FILE_INDEX" type="int" length="" notNull="true" desc="FILE_INDEX"/>
+        <field column="FILE_KEY" type="string" length="255" notNull="true" desc="FILE_KEY"/>
+        <field column="OSS_PREFIX" type="string" length="400" notNull="false" desc="OSS_PREFIX"/>
+        <field column="OSS_DIR" type="string" length="400" notNull="true" desc="OSS_DIR"/>
+        <field column="FILE_NAME" type="string" length="400" notNull="true" desc="FILE_NAME"/>
+        <field column="OSS_URL" type="string" length="2000" notNull="false" desc="OSS_URL"/>
+        <field column="DOWNLOAD_FLAG" type="int" length="" notNull="true" desc="DOWNLOAD_FLAG"/>
+        <field column="OSS_MARKER" type="string" length="400" notNull="false" desc="OSS_MARKER"/>
+        <field column="FILE_INDEX" type="int" length="" notNull="false" desc="OSS_PREFIX"/>
     </table>
 
 </package>

@@ -57,12 +57,11 @@ public class OssDownloadMain extends Servicer
         size = item == null ? 0 : item.getFileIndex();
         ObjectListing objectListing = null;
         Map<String, Integer> dirSize = new HashMap<>();
+        int pageSize = 1000;
         do
         {
             long t1 = System.currentTimeMillis();
-            objectListing = service.getObjectListing(bucketName, prefix_dir, marker, 10);
-            long t2 = System.currentTimeMillis();
-            System.out.println("第["+page+"]页查询共用["+(t2 - t1)+"]毫秒");
+            objectListing = service.getObjectListing(bucketName, prefix_dir, marker, pageSize);
             List<OSSObjectSummary> tlist = objectListing.getObjectSummaries();
             marker = objectListing.getNextMarker();//必须标记否则查询到相同数据
             List<OssFile> listFiles = new ArrayList<>();
@@ -72,18 +71,24 @@ public class OssDownloadMain extends Servicer
                 
                 String fileKey = ossFile.getKey();
                 String ossPrefix = prefix_dir;
-                String ossDir = fileKey.replaceFirst(prefix_dir, "").substring(0, fileKey.lastIndexOf("/"));
+                String ossDir = fileKey.replaceFirst(prefix_dir, "");
+                ossDir= ossDir.substring(0, ossDir.lastIndexOf("/"));
                 String fileName = fileKey.substring(fileKey.lastIndexOf("/")+1);
                 int downloadFlag = 0;
                 OssFile osFile = new OssFile();
                 osFile.setDownloadFlag(downloadFlag);
                 osFile.setFileKey(fileKey);
                 osFile.setFileName(fileName);
-                osFile.setOssDir(ossDir);
                 osFile.setOssPrefix(ossPrefix);
                 osFile.setFileIndex(size);
+                osFile.setOssDir(ossDir);
+                String ossFirstDir = null;
+                if (ossDir.indexOf("/") == -1)
+                    ossFirstDir = ossDir;
+                else
+                    ossFirstDir = ossDir.substring(0, ossDir.indexOf("/"));
                 
-                String ossFirstDir = ossDir.substring(0, ossDir.indexOf("/"));
+                
                 Integer cout = dirSize.get(ossFirstDir);
                 cout = cout == null ? 1 : cout+1;
                 dirSize.put(ossFirstDir, cout);
@@ -112,9 +117,16 @@ public class OssDownloadMain extends Servicer
             
             if (listFiles.size() != 0)
             {
+                
                 listFiles.get(listFiles.size() - 1).setOssMarker(marker);
-                ORM.get(ZTable.class).replaceBatch(listFiles);
-                System.out.println("第["+page+"]处理共用["+(System.currentTimeMillis() - t2)+"]毫秒");
+                for (OssFile ossFile2 : listFiles)
+                {
+                    OssFile ss = ORM.get(ZTable.class).item(OssFile.class, ossFile2.getFileKey());
+                    if (ss == null)
+                        ORM.get(ZTable.class).insert(ossFile2);
+                }
+               
+                System.out.println("第["+page+"]处理共用["+(System.currentTimeMillis() - t1)+"]毫秒");
                 log.info("已录入数据[%s]条 其中 %s", size, getInfo(dirSize));
             }
             
@@ -136,5 +148,10 @@ public class OssDownloadMain extends Servicer
             sb.append(str);
         }
         return sb.toString();
+    }
+    
+    public static void main(String[] args)
+    {
+        System.out.println("00000000/mnt/taobao/媒体素材/canvas/1712200931488598/imp_1801041512360558.jpg".getBytes().length);
     }
 }

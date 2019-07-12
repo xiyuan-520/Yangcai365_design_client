@@ -15,5 +15,6 @@
 	<classpathentry kind="lib" path="lib/httpcore-4.4.1.jar"/>
 	<classpathentry kind="lib" path="lib/jdom-1.1.jar"/>
 	<classpathentry kind="lib" path="lib/zhiqim_oss.jar" sourcepath="/YangcaiOss"/>
+	<classpathentry kind="lib" path="lib/zhiqim_mysql5.0.8.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
